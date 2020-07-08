@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2020 at 04:34 PM
+-- Generation Time: Jul 09, 2020 at 12:21 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -33,6 +33,14 @@ CREATE TABLE `admin` (
   `FirstName` varchar(50) DEFAULT NULL,
   `LastName` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`Admin_ID`, `Privileges_ID`, `FirstName`, `LastName`) VALUES
+(1, 1, 'Aaron', 'Pierson'),
+(2, 1, 'Tsega ', 'Teka');
 
 -- --------------------------------------------------------
 
@@ -65,10 +73,16 @@ CREATE TABLE `dates` (
 
 CREATE TABLE `gardens` (
   `Garden_ID` int(11) NOT NULL,
-  `Plant_ID` int(11) DEFAULT NULL,
   `GardenName` varchar(50) DEFAULT NULL,
   `GardenDescprtion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `gardens`
+--
+
+INSERT INTO `gardens` (`Garden_ID`, `GardenName`, `GardenDescprtion`) VALUES
+(1, 'Grape Vine', 'Grapes Grapes Grapes and more Grapes ');
 
 -- --------------------------------------------------------
 
@@ -77,7 +91,7 @@ CREATE TABLE `gardens` (
 --
 
 CREATE TABLE `plants` (
-  `Plant_ID` int(11) NOT NULL,
+  `garden_ID` int(11) NOT NULL,
   `Plant_API_Key` varchar(100) DEFAULT NULL,
   `PlantType` varchar(50) DEFAULT NULL,
   `AmountWanted` int(11) DEFAULT NULL,
@@ -95,6 +109,14 @@ CREATE TABLE `privileges` (
   `Description` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `privileges`
+--
+
+INSERT INTO `privileges` (`Admin_Key`, `Description`) VALUES
+(1, 'Admin Has full rights to manage the entire site'),
+(2, 'Admin Can update the content for the site.');
+
 -- --------------------------------------------------------
 
 --
@@ -111,6 +133,13 @@ CREATE TABLE `users` (
   `City` varchar(100) DEFAULT NULL,
   `StateCode` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`User_ID`, `Garden_ID`, `Calender_ID`, `UserName`, `Password`, `Zone`, `City`, `StateCode`) VALUES
+(1, 1, 1, 'Grapes', 'GG', 2, 'Chicago', 'IL');
 
 --
 -- Indexes for dumped tables
@@ -140,14 +169,7 @@ ALTER TABLE `dates`
 -- Indexes for table `gardens`
 --
 ALTER TABLE `gardens`
-  ADD PRIMARY KEY (`Garden_ID`),
-  ADD KEY `FK` (`Plant_ID`);
-
---
--- Indexes for table `plants`
---
-ALTER TABLE `plants`
-  ADD PRIMARY KEY (`Plant_ID`);
+  ADD PRIMARY KEY (`Garden_ID`);
 
 --
 -- Indexes for table `privileges`
@@ -161,6 +183,34 @@ ALTER TABLE `privileges`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`User_ID`),
   ADD KEY `FK` (`Garden_ID`,`Calender_ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `Admin_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `calender`
+--
+ALTER TABLE `calender`
+  MODIFY `Calender_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `gardens`
+--
+ALTER TABLE `gardens`
+  MODIFY `Garden_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
