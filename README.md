@@ -1,2 +1,2 @@
 # GardenSurvivalGuide
-I website for gardeners
+A website for gardeners
