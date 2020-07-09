@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <!--  This site was created in Webflow. http://www.webflow.com  -->
-<!--  Last Published: Thu Jul 09 2020 00:57:12 GMT+0000 (Coordinated Universal Time)  -->
+<!--  Last Published: Thu Jul 09 2020 04:57:35 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="5f0650cfe8dd7215550ecfd1" data-wf-site="5f0338d3ce63e27aaab3922d">
 <head>
   <meta charset="utf-8">
   <title>SignUp</title>
-  <meta content="SignUp" property="og:title">
-  <meta content="SignUp" property="twitter:title">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <meta content="Webflow" name="generator">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
   <link href="css/gardenguide.css" rel="stylesheet" type="text/css">
@@ -31,7 +28,16 @@
   <div class="section">
     <div class="container w-container">
       <div class="form-block w-form">
-        <form id="email-form" name="email-form" data-name="Email Form" class="form"><label for="name">User Name</label><input type="text" class="w-input" maxlength="256" name="name" data-name="Name" placeholder="" id="name"><label for="email">Password</label><input type="email" class="w-input" maxlength="256" name="email" data-name="Email" placeholder="" id="email" required=""><input type="submit" value="Sign Up" data-wait="Please wait..." class="submit-button w-button"></form>
+        <form id="wf-form-frm-signUp" name="wf-form-frm-signUp" data-name="frm-signUp" class="frm-signup">
+          <label for="name">User Name</label><input type="text" class="txt-username w-input" maxlength="256" name="name" data-name="Name" placeholder="" id="name">
+          <label for="password">Password</label>
+          <input type="password" class="input w-input" maxlength="256" name="password" data-name="password" placeholder="" id="password" required="">
+          <label for="city">City</label><input type="text" class="input w-input" maxlength="256" name="city" data-name="city" placeholder="" id="city" required="">
+          <label for="zone">Zone</label><input type="text" class="input w-input" maxlength="256" name="zone" data-name="zone" placeholder="" id="zone" required="">
+          <label for="State-Code">State Code</label>
+          <input type="text" class="input w-input" maxlength="256" name="State-Code" data-name="State Code" placeholder="" id="State-Code" required="">
+          <input type="submit" value="Sign Up" data-wait="Please wait..." class="submit-button w-button">
+        </form>
         <div class="w-form-done">
           <div>Thank you! Your submission has been received!</div>
         </div>
