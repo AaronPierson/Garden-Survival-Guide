@@ -1,0 +1,133 @@
+<?php
+include_once 'php/dbh_conn.php';
+$userName =  $_POST['txt-username'];
+//print_r($userName);
+$password = $_POST['txt-password'];
+//print_r($password);
+
+$sql = "SELECT * FROM users WHERE UserName='$userName' AND Password='$password';";
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+$row = mysqli_fetch_assoc($result);
+/* if($resultCheck > 0){
+  while($row = mysqli_fetch_assoc($result)){
+    echo $row['UserName'];
+  } 
+} */
+
+?>
+<!DOCTYPE html>
+<html data-wf-page="5f04fa4a5d63eaa1b98404cd" data-wf-site="5f0338d3ce63e27aaab3922d">
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+  <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Webflow" name="generator">
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/gardenguide.css" rel="stylesheet" type="text/css">
+  <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
+  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="images/webclip.png" rel="apple-touch-icon">
+</head>
+<body>
+  <div class="section-nav">
+    <nav class="nav-container w-container">
+      <div data-collapse="medium" data-animation="default" data-duration="400" role="banner" class="navbar w-nav">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu"><a href="#" class="w-nav-link">Home</a><a href="#" class="w-nav-link">Garden</a><a href="#" class="w-nav-link">Search</a></nav>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="section-usercontent">
+    <div class="container-usercontent w-container">
+      <div class="col-separator w-row">
+        <div class="col-quickimg w-col w-col-4">
+          <div class="w-layout-grid grid-quickimg">
+            <h1 id="w-node-89f5c27a3b91-b98404cd"> <?php
+                     echo $row['UserName'] . "'s " . " profile";        //UserName
+                ?> </h1>
+            <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" id="w-node-ce5cc66b193f-b98404cd" 
+            alt="" class="img-userpic">
+            <h3 class="heading-2">Today&#x27;s Weather</h3><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" 
+            id="w-node-4a9e9ddae6b6-b98404cd" alt="" class="img-weatherpic">
+            <div class="col-weatherdetails w-row">
+              <div class="w-col w-col-6">
+                <div class="w-layout-grid grid-weatherdetails">
+                  <h5 class="heading-precipitation">Precipitation: 0%</h5>
+                  <h5 class="heading-wind">Wind: 2 MPH</h5>
+                  <h5 class="heading-humidity">Humidity: 58%</h5>
+                </div>
+              </div>
+              <div class="col-weathertemp w-col w-col-6">
+                <h1 class="heading-temp">76 F</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-gardendetails w-col w-col-8">
+          <div class="w-layout-grid grid-gardendetails">
+            <h3 id="w-node-ddb05ef9ce2c-b98404cd" class="heading-plantmonth">Plant of the month</h3>
+            <div class="col-plantmonth w-row">
+              <div class="col-plantmonthimg w-col w-col-3"><img src="images/healthy-apple-fruits-natural-102104.jpg"
+                 srcset="images/healthy-apple-fruits-natural-102104-p-500.jpeg 500w, 
+                images/healthy-apple-fruits-natural-102104.jpg 640w" 
+                sizes="(max-width: 479px) 96vw, (max-width: 767px) 97vw, (max-width: 991px) 119.65625px, 154.984375px" 
+                alt="" class="img-plantmonth"></div>
+              <div class="col-plantmonthdetails w-col w-col-9">
+                <div class="p-plantmonth w-richtext">
+                  <h2>Apples</h2>
+                  <p>An apple is an edible fruit produced by an apple tree. 
+                    Apple trees are cultivated worldwide and are the most widely grown species in the genus Malus. 
+                    The tree originated in Central Asia, where its wild ancestor, Malus sieversii, 
+                    is still found today. 
+                    Apples have been grown for thousands of years in Asia and Europe and were brought to North America by European colonists. 
+                    Apples have religious and mythological significance in many cultures, 
+                    including Norse, Greek and European Christian tradition.</p>
+                  <p>‍</p>
+                </div>
+              </div>
+            </div>
+            <h3 id="w-node-e663ca9caab7-b98404cd"><?php
+                    //print_r($row['User_ID']);               //testing
+                    //Garden Connection Using the same user ID enter on login
+                    $userID = $row['User_ID'];
+                    $sql2 = "SELECT * FROM gardens WHERE user_ID='$userID';";
+                    $result2 = mysqli_query($conn, $sql2);
+                    //Making sure the connection is good
+                   if(!$result2){
+                     die('Query failed');
+                  }
+                   //print_r($row2 = mysqli_fetch_assoc(($result2)));             //testing
+                    $row = mysqli_fetch_array($result2);
+                      echo $row['GardenName'];
+               ?></h3>
+            <div class="w-dyn-list">
+              <div role="list" class="w-dyn-items">
+                <div role="listitem" class="w-dyn-item"></div>
+              </div>
+              <div class="w-dyn-empty">
+                <div id="lstItem">
+                <?php
+                       echo $row['GardenDescprtion'];
+                ?>
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.4.1.min.220afd743d.js?site=5f0338d3ce63e27aaab3922d" type="text/javascript" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="js/webflow.js" type="text/javascript"></script>
+  <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+</body>
+</html>
